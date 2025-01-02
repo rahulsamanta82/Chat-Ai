@@ -20,14 +20,14 @@ function App() {
   async function generateAnswer(e) {
     e.preventDefault();
     if (!question.trim()) return;
-    
+
     setGeneratingAnswer(true);
     const currentQuestion = question;
     setQuestion(""); // Clear input immediately after sending
-    
+
     // Add user question to chat history
     setChatHistory(prev => [...prev, { type: 'question', content: currentQuestion }]);
-    
+
     try {
       const response = await axios({
         url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${
