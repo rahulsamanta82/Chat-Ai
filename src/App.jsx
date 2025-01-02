@@ -4,6 +4,7 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 
 function App() {
+  console.log(import.meta.env.VITE_API_GENERATIVE_LANGUAGE_CLIENT)
   const [chatHistory, setChatHistory] = useState([]);
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -39,7 +40,9 @@ function App() {
         },
       });
 
+
       const aiResponse = response["data"]["candidates"][0]["content"]["parts"][0]["text"];
+      console.log (aiResponse)
       setChatHistory(prev => [...prev, { type: 'answer', content: aiResponse }]);
       setAnswer(aiResponse);
     } catch (error) {
